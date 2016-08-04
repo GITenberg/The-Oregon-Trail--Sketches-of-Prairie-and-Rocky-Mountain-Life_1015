@@ -1,0 +1,35 @@
+_repo: The-Oregon-Trail--Sketches-of-Prairie-and-Rocky-Mountain-Life_1015
+_version: 0.0.1
+creator:
+  author:
+    agent_name: Parkman, Francis
+    alias: Parkman, F. (Francis)
+    birthdate: 1823
+    deathdate: 1893
+    gutenberg_agent_id: '510'
+    url: http://www.gutenberg.org/2009/agents/510
+    wikipedia: http://en.wikipedia.org/wiki/Francis_Parkman
+description: ''
+gutenberg_bookshelf:
+- Children's History
+- United States
+gutenberg_issued: '2006-04-27'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '1015'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcc 'F590.3'
+- !lcsh 'Indians of North America -- West (U.S.)'
+- !lcsh 'West (U.S.) -- History -- To 1848'
+- !lcsh 'Oregon National Historic Trail'
+- !lcsh 'West (U.S.) -- Description and travel'
+- !lcsh 'Parkman, Francis, 1823-1893 -- Travel -- West (U.S.)'
+- !lcsh 'Frontier and pioneer life -- West (U.S.)'
+- !lcsh 'California National Historic Trail'
+- GITenberg
+title: 'The Oregon Trail: Sketches of Prairie and Rocky-Mountain Life'
+url: http://www.gutenberg.org/ebooks/1015
