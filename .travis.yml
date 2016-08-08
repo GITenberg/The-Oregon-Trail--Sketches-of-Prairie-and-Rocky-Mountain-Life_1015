@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: KO6+h10eoSqoOq3o8f+buYdaiplMBf6vh0+H3BGaOEmI3ral7/ozYVNwftwSPtEdDq6An4gx5lSU9jAXq7eV7vIau9X9+eCpIRUSAxXpey6OJKz7GwBWabQahTedNs2yb9Q7n0bWvWWmsCaCIuJz9bocMCmMV8TWNN3Y3Qx7dcxkdrrg83UQH9cGasmBvXbbMSsSzXfBD/Y50CV+oiJbAXWaZuR+4AJtMj/YGlF6V4DRskQX5VguKsZ5CrfNHvgpysiS5WI8umKe/R9FWCLKBTPJEUivPikEHJI0xqu8w//4h6qi4eF+og10Rh+VOgsf26U9oBGxQPJk5oEhJfrOtMR84b5mawmErldqKWF1a+yGK3XGT4ZuttbayPHXLa8+YAq8iJOD0KknMVBIzOZj5huA/xxxGpXkIzl2eMC9OhGF+VPYvLA25TYyI6UZpUhKQ5U8zJRmfuixbGIkCVEGqlWx9+bK/cr+7+/vJ2QfD6STer261N6FyS28xdbnRmAGXd3c41P6P783Wuy9lrf0N6mII9q0Wd3UzwBCSPny+W2Ik7TBP9q4tIT4WxVDTL5Pz0e6+oCBM7E17MOI+MIfXT3e2XTz7VbyswXyRxjtObwKyxpyYgPOxwvuVxfZqb3Awn2ItyiEI6fsHbss5tAxueFFfUTOPSZsNBNeKiQQm3c=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Oregon-Trail--Sketches-of-Prairie-and-Rocky-Mountain-Life_1015
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
